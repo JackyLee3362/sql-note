@@ -1,0 +1,158 @@
+---
+type: basic-note
+title: sql-基础-DDL
+author: JackyLee
+create_time: 2025-09-25
+update_time:
+tags:
+description:
+---
+
+## 建库和删库
+
+```sql
+-- 显示数据库
+SHOW DATABASES;
+-- 建库
+CREATE DATABASE IF NOT EXISTS db_test;
+-- 删库
+DROP DATABASE IF EXISTS db_test;
+```
+
+## 建表
+
+```sql
+-- 使用数据库
+USE db_test;
+-- 显示数据表
+SHOW TABLES;
+
+-- 建表
+DROP TABLE IF EXISTS user;
+CREATE TABLE IF NOT EXISTS user
+(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    uname  VARCHAR(50) NOT NULL,
+    points      INT NOT NULL DEFAULT 0,
+    email       VARCHAR(255) NOT NULL UNIQUE
+);
+
+-- 显示表
+DESC user;
+```
+
+## 更改表
+
+- 插入列
+- 修改列
+- 删除列
+
+```sql
+ALTER TABLE user
+    ADD age INT NOT NULL,
+    ADD city VARCHAR(50) NOT NULL AFTER email,
+    MODIFY COLUMN uname VARCHAR(55) NOT NULL DEFAULT '',
+    DROP points;
+```
+
+## 建立外键关系
+
+```sql
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE IF NOT EXISTS user
+(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    uname  VARCHAR(50) NOT NULL,
+    points      INT NOT NULL DEFAULT 0,
+    email       VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS orders
+(
+    id INT PRIMARY KEY,
+    user_id INT NOT NULL,
+    FOREIGN KEY fk_orders_user (user_id)
+        REFERENCES user (id)
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION
+);
+```
+
+## 更改主键/外键
+
+```sql
+CREATE TABLE IF NOT EXISTS temp (uuid INT PRIMARY KEY, uname VARCHAR(55));
+-- 删除主键
+ALTER TABLE orders DROP PRIMARY KEY;
+-- 增加主键
+ALTER TABLE temp ADD PRIMARY KEY id;
+-- 更换主键
+ALTER TABLE orders
+    DROP PRIMARY KEY,
+    ADD PRIMARY KEY id,
+    ;
+```
+
+## 更改外键
+
+```sql
+ALTER TABLE orders
+    DROP FOREIGN KEY fk_orders_customers,
+    ADD FOREIGN KEY fk_orders_customers (customer_id)
+        REFERENCES customers (customer_id)
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION;
+```
+
+## 9.30 字符集和排序规则 Character Sets and Collations
+
+```sql
+SHOW CHARSET;
+---------------------
+CREATE DATABASE db_name
+    CHARACTER SET latin1;
+ALTER DATABASE db_name
+    CHARACTER SET latin1;
+CREATE TABLE table1
+    CHARACTER SET latin1;
+ALTER TABLE table1
+    CHARACTER SET latin1
+```
+
+## 9.31 Storage Engines
+
+```sql
+SHOW ENGINES;
+ALTER TABLE customers
+ENGINE = InnoDB
+```
+
+## 复制表结构
+
+```sql
+CREATE TABLE user_bak AS
+SELECT * FROM user
+```
+
+### 练习 0.29
+
+```sql
+CREATE TABLE user_bak AS
+SELECT
+    i.invoice_id,
+    i.number,
+    c.name AS client,
+    i.invoice_total,
+    i.payment_total,
+    i.invoice_date,
+    i.payment_date,
+    i.due_date
+FROM invoices i
+JOIN clients c
+    USING (client_id)
+WHERE payment_date IS NOT NULL
+```
+
+## 参考资料
