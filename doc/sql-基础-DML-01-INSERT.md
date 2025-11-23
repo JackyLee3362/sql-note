@@ -13,12 +13,7 @@ description:
 ```sql
 -- 全列插入
 INSERT INTO user
-VALUE (
-    DEFAULT,
-    'Alice',
-    18,
-    '1990-01-01',
-    NULL)
+VALUE (DEFAULT, 'Alice', 18, '1990-01-01', NULL)
 -- 指定列
 INSERT INTO user (name, age, birth)
 VALUE ('Alice', 20, '1990-01-01');
@@ -40,11 +35,12 @@ VALUES ('alice', 15, '1990-01-01'),
 INSERT INTO user (id, name, age)
 VALUES (1, 'alice', 12);
 
--- SELECT LAST_INSERT_ID()
-INSERT INTO user
+-- SELECT LAST_INSERT_ID();
+INSERT INTO user(id, name, age)
 VALUES
     (LAST_INSERT_ID(), 'bob', 10),
     (LAST_INSERT_ID(), 'cindy', 13)
+
 
 ```
 

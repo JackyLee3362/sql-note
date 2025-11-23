@@ -1,6 +1,6 @@
 ---
 type: basic-note
-title: sql-基础-DDL
+title: sql-基础-DDL-建表语句
 author: JackyLee
 create_time: 2025-09-25
 update_time:
@@ -43,15 +43,14 @@ DESC user;
 
 ## 更改表
 
-- 插入列
-- 修改列
-- 删除列
-
 ```sql
 ALTER TABLE user
+    -- 新增列
     ADD age INT NOT NULL,
     ADD city VARCHAR(50) NOT NULL AFTER email,
+    -- 修改列
     MODIFY COLUMN uname VARCHAR(55) NOT NULL DEFAULT '',
+    -- 删除列
     DROP points;
 ```
 
@@ -80,7 +79,7 @@ CREATE TABLE IF NOT EXISTS orders
 );
 ```
 
-## 更改主键/外键
+## 更改主键
 
 ```sql
 CREATE TABLE IF NOT EXISTS temp (uuid INT PRIMARY KEY, uname VARCHAR(55));
@@ -106,7 +105,7 @@ ALTER TABLE orders
         ON DELETE NO ACTION;
 ```
 
-## 9.30 字符集和排序规则 Character Sets and Collations
+## 9.30 字符集和排序规则
 
 ```sql
 SHOW CHARSET;
@@ -121,19 +120,17 @@ ALTER TABLE table1
     CHARACTER SET latin1
 ```
 
-## 9.31 Storage Engines
+## 存储引擎
 
 ```sql
-SHOW ENGINES;
-ALTER TABLE customers
-ENGINE = InnoDB
+SHOW ENGINES; 
+ALTER TABLE customers ENGINE = InnoDB
 ```
 
 ## 复制表结构
 
 ```sql
-CREATE TABLE user_bak AS
-SELECT * FROM user
+CREATE TABLE user_bak AS SELECT * FROM user
 ```
 
 ### 练习 0.29
@@ -153,6 +150,15 @@ FROM invoices i
 JOIN clients c
     USING (client_id)
 WHERE payment_date IS NOT NULL
+```
+
+### 关于 USING() 函数
+
+```sql
+-- 示例：
+select a.*, b.* from a left join b using(colA);
+-- 等同于：
+select a.*, b.* from a left join b on a.colA = b.colA;
 ```
 
 ## 参考资料

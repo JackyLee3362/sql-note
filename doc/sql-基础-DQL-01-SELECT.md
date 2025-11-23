@@ -145,6 +145,11 @@ ORDER BY first_name
 
 ## LIMIT
 
-- 前 5 行: `LIMIT 5`
-- 跳过 2 行并获取 5 行: `LIMIT 5 OFFSET 3`
-- 第 3 行开始，获取接下来的 5 行: `LIMIT 3, 5`
+```sql
+-- 前 5 行
+... LIMIT 5
+
+-- 跳过 2 行并获取 5 行 
+... LIMIT 5 OFFSET 2
+... LIMIT 2, 5
+```

@@ -8,8 +8,6 @@ tags:
 description:
 ---
 
-## 介绍
-
 MYSQL 数据类型
 
 - 字符串 String
@@ -18,99 +16,75 @@ MYSQL 数据类型
 - 二进制数据 Blob
 - 特殊 Spacial
 
-## 8.2 String-Types
+## 字符串类型
 
-- CHAR(x): 固定长度
-- VARCHAR : 65,535 characters (~64KB)
-  - VARCHAR(50) for short strings
-  - VARCHAR(255) for medium-length strings
-- MEDIUMTEXT max: 16MB
-- LONGTEXT max:4GB
-- TINYTEXT max: 255 bytes
-- TEXT max: 64KB
+- CHAR(x): 定长字符串 0~255 B
+- VARCHAR : 变长字符串 0~65,535 B
+- MEDIUMTEXT 最大 16MB
+- LONGTEXT 最大 4GB
+- TINYTEXT 最大 255 B
+- TEXT 最大 64KB
 
-## 8.3 integer Types
+> char(30) 表示能存 30 个字符，而不是 30 个字节
 
-|                  |     |             |
-| ---------------- | --- | ----------- |
-| TINYINT          | 1b  | [-128, 127] |
-| UNSIGNED TINYINT |     | [0, 255]    |
-| SMALLINT         | 2b  | [-32K, 32K] |
-| MEDIUMINT        | 3b  | [-8M, 8M]   |
-| INT              | 4b  | [-2B, 2B]   |
-| BIGINT           | 8b  | [-9Z, 9Z]   |
+## 数值类型
 
-ZEROFILL
+- TINYINT: 1 字节
+- UNSIGNED TINYINT: 1 字节
+- SMALLINT: 2 字节
+- MEDIUMINT: 3 字节
+- INT: 4 字节
+- BIGINT: 8 字节
 
-```sql
-GOOGLE mysql integer types
-```
+## 浮点型
 
-## 8.4 Fixed-point and Floating-point Types
+- DECIMAL(p, s): DECIMAL(9, 2) , => 1234567.89
+- DEC
+- NUMERIC
+- FIXED
+- FLOAT: 4b
+- DOUBLE: 8b
 
-RATIONALS
-
-|               |               |               |
-| ------------- | ------------- | ------------- |
-| DECIMAL(p, s) | DECIMAL(9, 2) | => 1234567.89 |
-| DEC           |               |               |
-| NUMERIC       |               |               |
-| FIXED         |               |               |
-| FLOAT         | 4b            |               |
-| DOUBLE        | 8b            |               |
-
-## 8.5 Boolean Types
+## 布尔类型
 
 - BOOL
 - BOOLEAN
 
 ```sql
 UPDATE posts
-SET is_published = 1  # or FALSE
+SET is_published = 1
+-- SET is_published = TRUE
+-- SET is_published = FALSE
 ```
 
-## 8.6 Enum and Set Types
+## 枚举和集合类型
+
+> 尽量不使用
 
 ```sql
--- avoid ENUM
 ENUM('small', 'medium', 'large')
 
 SET(...)
-
 ```
 
-## 8.7 Data and Time Types
+## 日期和时间类型
 
-|           |                |
-| --------- | -------------- |
-| DATE      |                |
-| TIME      |                |
-| DATEMIE   | 8b             |
-| TIMESTAMP | 4b(up to 2038) |
-| YEAR      |                |
+- DATE
+- TIME
+- DATETIME , 8b ,
+- TIMESTAMP , 4b(up to 2038) ,
+- YEAR
 
-## 8.8 Blob Types
+## 二进制类型
 
-|            |      |
-| ---------- | ---- |
-| TINYBLOB   | 255b |
-| BLOB       | 65KB |
-| MEDIUMBLOB | 16MB |
-| LONGBLOB   | 4GB  |
-|            |      |
+- TINYBLOB: 255 字节
+- BLOB: 65KB
+- MEDIUMBLOB: 16MB
+- LONGBLOB: 4GB
 
-PROBLEMS WITH STORING FILES IN A DATABASE
-
-- Increased database size
-- Slower backups
-- Performance problems
-- More code to read/write images
-
-## 8.9 JSON Type
+## JSON 类型
 
 JSON
-
-- Lightweight format for storing and transferring date over the internet
 
 ```sql
 UPDATE products
@@ -127,7 +101,7 @@ UPDATE products
 SET properties = JSON_OBJECT(
     'weight', 10,
     'dimension', JSON_ARRAY(1, 2, 3),
-    'manufacturer', JSON_OBJECT('name', 'sony')
+    'manufacturer', JSON_OBJECT('name': 'sony')
 )
 WHERE product_id = 2
 ----------------------------
