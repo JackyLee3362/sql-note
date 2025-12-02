@@ -40,10 +40,12 @@ MYSQL 数据类型
 
 - DECIMAL(p, s): DECIMAL(9, 2) , => 1234567.89
 - DEC
-- NUMERIC
+- NUMERIC 一般用于货币
 - FIXED
 - FLOAT: 4b
 - DOUBLE: 8b
+
+对于金融货币，使用 DECIMAL 或者 Numeric
 
 ## 布尔类型
 

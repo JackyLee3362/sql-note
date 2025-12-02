@@ -10,6 +10,7 @@ drop table if exists user;
 create table
     if not exists user (
         id bigint primary key auto_increment comment 'user id',
+        name varchar(255) comment 'user name',
         gender tinyint default 0 comment '0 male, 1 female',
         age int comment 'age',
         email varchar(255) not null comment 'email'
@@ -27,8 +28,9 @@ drop table if exists orders;
 create table
     if not exists orders (
         id bigint primary key auto_increment comment 'order id',
-        user_id bigint unique comment 'user_id',
-        price int comment 'price',
+        user_id bigint unique comment 'user id',
+        order_desc varchar(255) comment 'order description',
+        price decimal comment 'price',
         address varchar(255) comment 'address'
     ) engine = innoDB;
 

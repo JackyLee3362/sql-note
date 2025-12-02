@@ -1,17 +1,17 @@
 # SECTION 7
 
-## 7.1 Transactions
+## 1 事务
 
 A group of SQL statement that represent a single unit of work
 
 ACID Properties
 
-- Atomicity
-- Consistency
-- Isolation
-- Durability
+- 原子性: Atomicity
+- 一致性: Consistency
+- 隔离性: Isolation
+- 持久性: Durability
 
-## 7.2 Creating Transaction
+## 2 创建事务
 
 ```sql
 USE sql_store;
@@ -28,7 +28,7 @@ COMMIT;
 
 ```
 
-## 7.3 Concurrency and Locking
+## 3 并发和锁
 
 ```sql
 USE sql_store;
@@ -40,7 +40,11 @@ COMMIT
 
 ```
 
-## 7.4 Concurrency Problem
+## 4 并发问题
+
+- 脏读
+- 不可重复读
+- 幻读
 
 - Lost Updates
 - Dirty Reads
@@ -51,7 +55,7 @@ COMMIT
 
 ```
 
-## 7.5  Transaction isolation Levels
+## 5 事务隔离级别
 
 |                  | Lost Updates | Dirty Reads | Non-repeating Reads | Phantom Reads |
 | ---------------- | ------------ | ----------- | ------------------- | ------------- |
@@ -69,33 +73,12 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 -- SET GLOBAL TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 ```
 
-## 7.6 READ UNCOMMITEED isolation Level
+- 读未提交
+- 读已提交
+- 可重复读
+- 序列化
 
-```sql
 
-```
+## 死锁问题
 
-## 7.7 READ COMMITTEED isolation Level
-
-```sql
-
-```
-
-## 7.8 REPEATABLE READ isolation Level
-
-```sql
-
-```
-
-## 7.9 SERIALIZABLE isolation Level
-
-```sql
-
-```
-
-## 7.10 Deadlocks
-
-```sql
-
-```
 
