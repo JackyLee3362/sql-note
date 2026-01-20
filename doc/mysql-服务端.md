@@ -17,6 +17,10 @@ brew services restart mysql@8.0
 
 # 查找 mysql 的配置文件
 mysql --help | grep 'my.cnf'
+
+# 如果是从 scoop 下载的
+mysql --standalone
+scoop info mysql
 ```
 
 ## 参考资料

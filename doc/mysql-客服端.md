@@ -14,6 +14,18 @@ mysql -h localhost -u root -p
 # 输入密码
 ```
 
+### 数据库 URL 
+
+```sh
+jdbc:mysql://localhost:3306/test_app?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+# 解析下就是
+useSSL=false
+serverTimezone=Asia/Shanghai
+allowPublicKeyRetrieval=true
+```
+
+### 测试连接
+
 客户端，测试连接
 
 ```sql
