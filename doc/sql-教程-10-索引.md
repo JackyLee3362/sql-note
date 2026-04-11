@@ -1,5 +1,11 @@
 # SECTION 10
 
+## 建表时新增索引
+
+```sql
+CREATE TABLE
+```
+
 ## 10.2 新增索引
 
 ```sql
@@ -33,9 +39,7 @@ ADD INDEX idx_yyy(col_3, col_4);
 DROP INDEX 
 ```
 
-
-
-## 10.4 Viewing Indexes
+## 10.4 预览索引
 
 ```sql
 SHOW INDEXES IN customers;

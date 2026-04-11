@@ -12,19 +12,19 @@ description:
 
 ## 数据模型
 
-- Understand the requirements
-- Build a Conceptual Model
-- Build a Logical Model
-- Build a Physical Model
+- 理解需求
+- 创建概念模型(实体)
+- 创建逻辑模型(字段和类型)
+- 创建物理模型(分库分表、引擎、索引)
 
 ## Conceptual Models 概念模型
 
 Represents the entities and their relationships
 
-- Entity Relationship (ER): ERP
+- 实体关系图: Entity Relationship (ER): ERP
 - UML
 
-Entity Relationship
+实体关系图
 
 - Microsoft Visio
 - draw.io
